@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾莲雅-鲨鱼狐 | 个人官网</title>
+    <style>
+        /* ========== 全局样式 ========== */
+        :root {
+            --primary: #6A0DAD;
+            --secondary: #E6E6FA;
+            --accent: #DA70D6;
+            --dark: #4B0082;
+            --light: #F8F0FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* ========== 页眉样式 ========== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* ========== 社交媒体区域 ========== */
+        .social-section {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            padding: 1.8rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ========== 主要内容区域 ========== */
+        .content-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 1rem auto 0;
+            border-radius: 3px;
+        }
+        
+        /* ========== 文章网格布局 ========== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+        
+        .article-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .article-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .article-meta span::before {
+            content: "•";
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .article-excerpt {
+            color: #555;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+        
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(218, 112, 214, 0.1);
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+            background-color: rgba(106, 13, 173, 0.1);
+        }
+        
+        .read-more::after {
+            content: "→";
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* ========== 页脚样式 ========== */
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle fill="rgba(255,255,255,0.05)" cx="25" cy="25" r="5"/><circle fill="rgba(255,255,255,0.05)" cx="75" cy="75" r="5"/><circle fill="rgba(255,255,255,0.05)" cx="25" cy="75" r="5"/><circle fill="rgba(255,255,255,0.05)" cx="75" cy="25" r="5"/></svg>');
+        }
+        
+        .contact-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .contact-email {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-email:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-id {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.8;
+            position: relative;
+        }
+        
+        .ip-record {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+        }
+        
+        /* ========== 动画效果 ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .article-card {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+        
+        .article-card:nth-child(1) { animation-delay: 0.1s; }
+        .article-card:nth-child(2) { animation-delay: 0.2s; }
+        .article-card:nth-child(3) { animation-delay: 0.3s; }
+        .article-card:nth-child(4) { animation-delay: 0.4s; }
+        .article-card:nth-child(5) { animation-delay: 0.5s; }
+        .article-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* ========== 响应式设计 ========== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-links a {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .content-section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页眉区域 -->
+    <header>
+        <h1>艾莲雅-鲨鱼狐</h1>
+        <p class="tagline">技术美术向 | 二次元渲染业余爱好者 | 影视动画爱好者</p>
+    </header>
+    
+    <!-- 社交媒体链接 -->
+    <section class="social-section">
+        <div class="social-links">
+            <a href="https://www.douyin.com/">抖音</a>
+            <a href="https://www.bilibili.com/">哔哩哔哩</a>
+            <a href="https://www.kuaishou.com/">快手</a>
+            <a href="https://channels.weixin.qq.com/">视频号</a>
+            <a href="https://www.ixigua.com/">西瓜视频</a>
+        </div>
+    </section>
+    
+    <!-- 主要内容区域 -->
+    <main class="content-section">
+        <h2 class="section-title">个人分享</h2>
+        <div class="articles-grid">
+            <!-- 文章卡片1 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《关于技术美术的职位分析》</h3>
+                    <div class="article-meta">
+                        <span>技术美术</span>
+                        <span>2024-10-15</span>
+                        <span>阅读量: 8人</span>
+                    </div>
+                    <p class="article-excerpt">探讨技术美术在不同规模公司中的职责差异与职业发展路径，分析行业现状与未来趋势。包括TA在游戏开发流程中的定位、必备技能树解析以及国内外市场需求对比。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+            
+            <!-- 文章卡片2 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《二次元渲染常用渲染方式》</h3>
+                    <div class="article-meta">
+                        <span>图形技术</span>
+                        <span>2024-09-28</span>
+                        <span>阅读量: 12人</span>
+                    </div>
+                    <p class="article-excerpt">解析动漫风格渲染的核心技术与实现路径，比较不同引擎下的渲染效果与性能优化方案。涵盖卡通着色、描边处理、材质特殊处理等关键技术点，并提供Unity和Unreal引擎的实践案例。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+            
+            <!-- 文章卡片3 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《酒桌文化对影视动画的影响》</h3>
+                    <div class="article-meta">
+                        <span>行业观察</span>
+                        <span>2024-08-05</span>
+                        <span>阅读量: 15人</span>
+                    </div>
+                    <p class="article-excerpt">从行业生态角度分析传统文化对创作流程的影响，探讨东西方工作文化差异对内容产出的影响。结合具体案例分析酒桌文化如何影响项目决策、团队协作与创意表达。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+            
+            <!-- 文章卡片4 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《Unity Shader Graph实战技巧》</h3>
+                    <div class="article-meta">
+                        <span>图形技术</span>
+                        <span>2024-07-22</span>
+                        <span>阅读量: 6人</span>
+                    </div>
+                    <p class="article-excerpt">深入讲解Unity Shader Graph的高级应用技巧，包括自定义节点编写、性能优化策略以及复杂材质效果实现。通过实际案例展示如何创建高效且美观的着色器。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+            
+            <!-- 文章卡片5 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《影视动画中的色彩心理学》</h3>
+                    <div class="article-meta">
+                        <span>影视动画</span>
+                        <span>2024-06-10</span>
+                        <span>阅读量: 9人</span>
+                    </div>
+                    <p class="article-excerpt">探讨色彩在动画创作中的心理暗示作用，分析不同色彩搭配如何影响观众情绪。结合经典动画案例，解析色彩设计在叙事表达中的重要作用。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+            
+            <!-- 文章卡片6 -->
+            <article class="article-card">
+                <div class="article-content">
+                    <h3 class="article-title">《技术美术的职业规划指南》</h3>
+                    <div class="article-meta">
+                        <span>职业发展</span>
+                        <span>2024-05-18</span>
+                        <span>阅读量: 4人</span>
+                    </div>
+                    <p class="article-excerpt">为技术美术从业者提供全面的职业规划建议，包括技能提升路径、行业认证选择、个人作品集构建以及职业转型策略。帮助TA从业者实现长期职业发展目标。</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <!-- 页脚区域 -->
+    <footer>
+        <h2 class="contact-title">联系我</h2>
+        <p>邮箱: <a href="mailto:1141789895@qq.com" class="contact-email">1141789895@qq.com</a></p>
+        <p class="social-id">全网统一ID: 艾莲雅_鲨鱼狐</p>
+        <p class="ip-record">个人小网站喵！</p>
+    </footer>
+    
+    <script>
+        // ========== 文章数据管理 ==========
+        // 实际应用中应从后端API获取文章数据
+        const articles = [
+            {
+                id: 1,
+                title: "《关于技术美术的职位分析》",
+                category: "技术美术",
+                date: "2024-10-15",
+                views: 8,
+                excerpt: "探讨技术美术在不同规模公司中的职责差异与职业发展路径，分析行业现状与未来趋势。包括TA在游戏开发流程中的定位、必备技能树解析以及国内外市场需求对比。",
+                content: "这里是完整的文章内容..."
+            },
+            {
+                id: 2,
+                title: "《二次元渲染常用渲染方式》",
+                category: "图形技术",
+                date: "2024-09-28",
+                views: 12,
+                excerpt: "解析动漫风格渲染的核心技术与实现路径，比较不同引擎下的渲染效果与性能优化方案。涵盖卡通着色、描边处理、材质特殊处理等关键技术点，并提供Unity和Unreal引擎的实践案例。",
+                content: "这里是完整的文章内容..."
+            },
+            {
+                id: 3,
+                title: "《酒桌文化对影视动画的影响》",
+                category: "行业观察",
+                date: "2024-08-05",
+                views: 15,
+                excerpt: "从行业生态角度分析传统文化对创作流程的影响，探讨东西方工作文化差异对内容产出的影响。结合具体案例分析酒桌文化如何影响项目决策、团队协作与创意表达。",
+                content: "这里是完整的文章内容..."
+            },
+            {
+                id: 4,
+                title: "《Unity Shader Graph实战技巧》",
+                category: "图形技术",
+                date: "2024-07-22",
+                views: 6,
+                excerpt: "深入讲解Unity Shader Graph的高级应用技巧，包括自定义节点编写、性能优化策略以及复杂材质效果实现。通过实际案例展示如何创建高效且美观的着色器。",
+                content: "这里是完整的文章内容..."
+            },
+            {
+                id: 5,
+                title: "《影视动画中的色彩心理学》",
+                category: "影视动画",
+                date: "2024-06-10",
+                views: 9,
+                excerpt: "探讨色彩在动画创作中的心理暗示作用，分析不同色彩搭配如何影响观众情绪。结合经典动画案例，解析色彩设计在叙事表达中的重要作用。",
+                content: "这里是完整的文章内容..."
+            },
+            {
+                id: 6,
+                title: "《技术美术的职业规划指南》",
+                category: "职业发展",
+                date: "2024-05-18",
+                views: 4,
+                excerpt: "为技术美术从业者提供全面的职业规划建议，包括技能提升路径、行业认证选择、个人作品集构建以及职业转型策略。帮助TA从业者实现长期职业发展目标。",
+                content: "这里是完整的文章内容..."
+            }
+        ];
+        
+        // ========== 文章上传接口预留 ==========
+        /**
+         * 上传新文章到服务器
+         * @param {Object} articleData - 包含文章标题、内容、分类等数据的对象
+         * @returns {Promise} 返回Promise对象，包含服务器响应
+         */
+        function uploadArticle(articleData) {
+            // 实际应用中这里应该调用后端API
+            return new Promise((resolve, reject) => {
+                // 模拟API请求延迟
+                setTimeout(() => {
+                    // 模拟成功响应
+                    const response = {
+                        success: true,
+                        message: "文章上传成功",
+                        articleId: Date.now(),
+                        timestamp: new Date().toISOString()
+                    };
+                    resolve(response);
+                    
+                    // 模拟错误情况（测试时可取消注释）
+                    // reject(new Error("网络请求失败"));
+                }, 1000);
+            });
+            
+            /* 
+            实际API调用示例（需根据您的后端实现调整）：
+            return fetch('/api/articles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(articleData)
+            })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+                throw error;
+            });
+            */
+        }
+        
+        // ========== 文章管理功能预留 ==========
+        /**
+         * 从服务器获取文章列表
+         * @param {number} [page=1] - 页码
+         * @param {number} [limit=10] - 每页数量
+         * @returns {Promise} 返回Promise对象，包含文章列表数据
+         */
+        function getArticles(page = 1, limit = 10) {
+            // 实际应用中这里应该调用后端API
+            return Promise.resolve({
+                data: articles.slice((page - 1) * limit, page * limit),
+                total: articles.length,
+                page,
+                limit
+            });
+            
+            /* 
+            实际API调用示例：
+            return fetch(`/api/articles?page=${page}&limit=${limit}`)
+                .then(response => response.json());
+            */
+        }
+        
+        /**
+         * 获取单篇文章详情
+         * @param {number} articleId - 文章ID
+         * @returns {Promise} 返回Promise对象，包含文章详情
+         */
+        function getArticleDetail(articleId) {
+            // 实际应用中这里应该调用后端API
+            const article = articles.find(a => a.id === articleId);
+            return article 
+                ? Promise.resolve(article)
+                : Promise.reject(new Error("文章未找到"));
+                
+            /* 
+            实际API调用示例：
+            return fetch(`/api/articles/${articleId}`)
+                .then(response => response.json());
+            */
+        }
+        
+        // ========== 页面初始化 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // 这里可以初始化文章列表或执行其他页面初始化逻辑
+            console.log('网站初始化完成');
+            
+            // 示例：模拟上传文章（测试时可取消注释）
+            /*
+            const newArticle = {
+                title: "测试文章标题",
+                content: "这是测试文章内容...",
+                category: "测试分类",
+                image: null
+            };
+            
+            uploadArticle(newArticle)
+                .then(response => {
+                    console.log('上传成功:', response);
+                })
+                .catch(error => {
+                    console.error('上传失败:', error);
+                });
+            */
+        });
+    </script>
+</body>
+</html>
